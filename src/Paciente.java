@@ -20,7 +20,8 @@ public class Paciente extends Persona {
         this.historialMedico = historialMedico;
     }
 
-    public boolean esAdultoMayor(){
+    
+    public boolean esAdultoMayorDe65(){
         return super.getEdad()>=65;
     }
 

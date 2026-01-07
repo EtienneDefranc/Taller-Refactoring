@@ -1,12 +1,10 @@
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Consulta {
-    private int dia;
-    private int mes;
-    private int año;
-    private String hora;
+    private LocalDateTime fechaHora;
     private Paciente paciente;
     private Medico medico;
     private ServicioMedico servicioMedico;
@@ -15,23 +13,12 @@ public class Consulta {
     private String tratamiento;
     private List<String> examenesMedicos = new ArrayList<>();
 
-    public Consulta(int dia, int mes, int año, String hora, Paciente paciente, Medico medico, ServicioMedico servicioMedico, String diagnostico, String tratamiento, List<String> examenesMedicos) {
-        this.dia = dia;
-        this.mes = mes;
-        this.año = año;
-        this.hora = hora;
+    private Consulta(LocalDateTime fechaHora, Paciente paciente, Medico medico, ServicioMedico servicioMedico, String diagnostico, String tratamiento, List<String> examenesMedicos) {
+        this.fechaHora = fechaHora;
         this.servicioMedico = servicioMedico;
         this.paciente = paciente;
         this.medico = medico;
         this.realizada = false;
-    }
-
-    public String getHora() {
-        return hora;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
     }
 
     public Paciente getPaciente() {
@@ -96,8 +83,5 @@ public class Consulta {
         this.servicioMedico = servicioMedico;
     }
 
-    public String getFecha() {
-        return dia + "/" + mes + "/" + año;
-    }
 
 }
