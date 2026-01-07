@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Consulta {
     private LocalDateTime fechaHora;
-    private LocalDateTime fechaHora;
     private Paciente paciente;
     private Medico medico;
     private ServicioMedico servicioMedico;
@@ -16,8 +15,6 @@ public class Consulta {
     private String tratamiento;
     private List<String> examenesMedicos = new ArrayList<>();
 
-    private Consulta(LocalDateTime fechaHora, Paciente paciente, Medico medico, ServicioMedico servicioMedico, String diagnostico, String tratamiento, List<String> examenesMedicos) {
-        this.fechaHora = fechaHora;
     public Consulta(int dia, int mes, int año, String hora, Paciente paciente, Medico medico, ServicioMedico servicioMedico, String diagnostico, String tratamiento, List<String> examenesMedicos) {
         this.fechaHora = LocalDateTime.of(año, mes, dia, parseHour(hora)[0], parseHour(hora)[1]);
         this.servicioMedico = servicioMedico;
