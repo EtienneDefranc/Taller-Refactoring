@@ -32,7 +32,7 @@ public class SistemaAtencionMedico {
         paciente.getHistorialMedico().getConsultas().add(consulta); //Hacer esto es incorrecto
     }
 
-    public double calcularValorFinalConsulta(double costoConsulta, int edadPaciente) {
+    private double calcularValorFinalConsulta(double costoConsulta, int edadPaciente) {
         double valorARestar = 0;
         if (edadPaciente >= 65) {
             valorARestar = costoConsulta * 0.25;
