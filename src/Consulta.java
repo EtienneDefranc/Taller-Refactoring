@@ -16,6 +16,7 @@ public class Consulta {
 
     public Consulta(LocalDateTime fechaHora, Paciente paciente, Medico medico, ServicioMedico servicioMedico) {
         this.fechaHora = fechaHora;
+
         this.servicioMedico = servicioMedico;
         this.paciente = paciente;
         this.medico = medico;
