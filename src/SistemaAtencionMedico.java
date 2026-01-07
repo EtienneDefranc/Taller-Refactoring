@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 public class SistemaAtencionMedico {
     private List<Paciente> pacientes;
@@ -31,7 +30,7 @@ public class SistemaAtencionMedico {
         int edadPaciente = paciente.getEdad();
         costoConsulta = calcularValorFinalConsulta(costoConsulta,edadPaciente);
         System.out.println("Se han cobrado "+ costoConsulta+ " dolares de su tarjeta de credito");
-        paciente.getHistorialMedico().getConsultas().add(consulta); //Hacer esto es incorrecto
+        paciente.agregarConsulta(consulta);
     }
 
     public double calcularValorFinalConsulta(double costoConsulta, int edadPaciente){
