@@ -1,9 +1,11 @@
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Consulta {
-    public int dia;
-    public int mes;
-    public int año;
+    private int dia;
+    private int mes;
+    private int año;
     private String hora;
     private Paciente paciente;
     private Medico medico;
@@ -11,7 +13,7 @@ public class Consulta {
     private boolean realizada;
     private String diagnostico;
     private String tratamiento;
-    private List<String> examenesMedicos;
+    private List<String> examenesMedicos = new ArrayList<>();
 
     private Consulta(int dia, int mes, int año, String hora, Paciente paciente, Medico medico, ServicioMedico servicioMedico, String diagnostico, String tratamiento, List<String> examenesMedicos) {
         this.dia = dia;
@@ -72,12 +74,18 @@ public class Consulta {
         this.tratamiento = tratamiento;
     }
 
+    // RETORNA LISTA DE EXAMENES MEDICOS
     public List<String> getExamenesMedicos() {
-        return examenesMedicos;
+        return Collections.unmodifiableList(examenesMedicos);
     }
 
-    public void setExamenesMedicos(List<String> examenesMedicos) {
-        this.examenesMedicos = examenesMedicos;
+    public void addExamenMedico(String examen) {
+        if (examen == null || examen.isBlank()) throw new IllegalArgumentException("Examen inválido");
+        examenesMedicos.add(examen);
+    }
+
+    public boolean removeExamenMedico(String examen) {
+        return examenesMedicos.remove(examen);
     }
 
     public ServicioMedico getServicioMedico() {
@@ -87,4 +95,9 @@ public class Consulta {
     public void setServicioMedico(ServicioMedico servicioMedico) {
         this.servicioMedico = servicioMedico;
     }
+
+    public String getFecha() {
+        return dia + "/" + mes + "/" + año;
+    }
+
 }
