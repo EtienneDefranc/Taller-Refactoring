@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Main{
     static SistemaAtencionMedico sistemaAtencionMedica;
     public static void main(String[] args) {
@@ -5,7 +7,7 @@ public class Main{
         Paciente paciente = sistemaAtencionMedica.obtenerPaciente("Darioo");
         ServicioMedico servicioMedico = sistemaAtencionMedica.obtenerServicioMedico("Psiquiatria");
         Medico medico = sistemaAtencionMedica.obtenerMedico("Nohelia");
-        Consulta consulta = new Consulta(05,05,2002,"12:05",paciente,medico,servicioMedico,"dvasdv","asdvas",null);
+    Consulta consulta = new Consulta(05,05,2002,"12:05",paciente,medico,servicioMedico,"dvasdv","asdvas",new ArrayList<>());
         sistemaAtencionMedica.agendarConsulta(paciente,consulta);
     }
 

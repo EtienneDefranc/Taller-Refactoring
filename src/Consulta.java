@@ -1,12 +1,11 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Consulta {
-    private int dia;
-    private int mes;
-    private int año;
-    private String hora;
+    private LocalDateTime fechaHora;
     private Paciente paciente;
     private Medico medico;
     private ServicioMedico servicioMedico;
@@ -16,10 +15,7 @@ public class Consulta {
     private List<String> examenesMedicos = new ArrayList<>();
 
     public Consulta(int dia, int mes, int año, String hora, Paciente paciente, Medico medico, ServicioMedico servicioMedico, String diagnostico, String tratamiento, List<String> examenesMedicos) {
-        this.dia = dia;
-        this.mes = mes;
-        this.año = año;
-        this.hora = hora;
+        this.fechaHora = LocalDateTime.of(año, mes, dia, parseHour(hora)[0], parseHour(hora)[1]);
         this.servicioMedico = servicioMedico;
         this.paciente = paciente;
         this.medico = medico;
@@ -27,11 +23,17 @@ public class Consulta {
     }
 
     public String getHora() {
-        return hora;
+    return fechaHora != null ? fechaHora.format(DateTimeFormatter.ofPattern("HH:mm")) : null;
     }
 
     public void setHora(String hora) {
-        this.hora = hora;
+        int[] hm = parseHour(hora);
+        if (this.fechaHora != null) {
+            this.fechaHora = this.fechaHora.withHour(hm[0]).withMinute(hm[1]);
+        } else {
+            LocalDateTime now = LocalDateTime.now();
+            this.fechaHora = LocalDateTime.of(now.getYear(), now.getMonthValue(), now.getDayOfMonth(), hm[0], hm[1]);
+        }
     }
 
     public Paciente getPaciente() {
@@ -97,7 +99,19 @@ public class Consulta {
     }
 
     public String getFecha() {
-        return dia + "/" + mes + "/" + año;
+        return fechaHora != null ? fechaHora.format(DateTimeFormatter.ofPattern("d/M/yyyy")) : null;
+    }
+
+    private static int[] parseHour(String hora) {
+        if (hora == null || hora.isBlank()) return new int[]{0,0};
+        String[] parts = hora.split(":");
+        try {
+            int h = Integer.parseInt(parts[0]);
+            int m = parts.length > 1 ? Integer.parseInt(parts[1]) : 0;
+            return new int[]{h, m};
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Hora inválida: " + hora);
+        }
     }
 
 }
