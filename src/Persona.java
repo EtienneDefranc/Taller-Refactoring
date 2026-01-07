@@ -7,12 +7,12 @@ public class Persona {
     private String correoElectronico;
 
     public Persona(String nombre, int edad, String genero, String direccion, String telefono, String correoElectronico) {
-        this.nombre = nombre;
-        this.edad = edad;
-        this.genero = genero;
-        this.direccion = direccion;
-        this.telefono = telefono;
-        this.correoElectronico = correoElectronico;
+        this.setNombre(nombre);
+        this.setEdad(edad);
+        this.setGenero(genero);
+        this.setDireccion(direccion);
+        this.setTelefono(telefono);
+        this.setCorreoElectronico(correoElectronico);
     }
 
     public String getNombre() {
