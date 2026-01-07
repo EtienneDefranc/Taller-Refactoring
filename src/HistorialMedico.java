@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class HistorialMedico {
@@ -10,8 +11,19 @@ public class HistorialMedico {
         this.recetasMedicas = new ArrayList<>();
     }
 
+    // RETORNA LISTA DE CONSULTAS
     public List<Consulta> getConsultas() {
-        return consultas;
+        return Collections.unmodifiableList(consultas);
+    }
+
+    public void addConsulta(Consulta consulta) {
+        if (consulta == null) throw new IllegalArgumentException("Consulta inválida");
+        consultas.add(consulta);
+    }
+
+    public void removeConsulta(Consulta consulta) {
+        if (consulta == null) throw new IllegalArgumentException("Consulta inválida");
+        consultas.remove(consulta);
     }
 
     public void setConsultas(List<Consulta> consultas) {
