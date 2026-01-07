@@ -12,4 +12,5 @@ public class Paciente extends Persona {
     public boolean esAdultoMayor(){
         return super.getEdad()>=65;
     }
+
 }
